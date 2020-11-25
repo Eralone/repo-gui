@@ -1,0 +1,39 @@
+.inputField {
+    -fx-alignment: center;
+    -fx-font-size: 14;
+}
+
+.send-button {
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+    -fx-font-weight: 900;
+    -fx-font-size: 21;
+}
+
+
+.main-color {
+    -fx-background-color: #2e4198;
+    -fx-text-fill: #fff;
+}
+
+.my-color {
+    -fx-background-color: #0088d6;
+    -fx-title-color: #fff;
+    -fx-text-fill: #020068;
+}
+
+.window-color {
+    -fx-background-image: url("7780.jpg");
+    -fx-text-fill: #020068;
+}
+
+.TabBut-color {
+    -fx-background-color: #020068;
+    -fx-text-fill: #fff;
+    
+}
+
+
+
+
+
