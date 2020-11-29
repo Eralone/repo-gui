@@ -6,9 +6,10 @@ public class Main {
     static final int lim = value/2;
     static float[] arr = new float[value];
 
+
     public static void main(String[] args) {
 
-        met2(arr); //met2(arr) и met2(arr2, arr3) -одинаково справляються по времени, поэтому решил оставить так.
+        met2(arr);
 
     }
 
@@ -22,16 +23,23 @@ public class Main {
     }
 
     static void met2 (float[] arr){
-        float[] arr2 = new float[lim];
-        float[] arr3 = new float[lim];
-        System.arraycopy(arr,0,arr2,0, lim);
-        System.arraycopy(arr,lim,arr3,0, lim);
-        System.out.println(System.currentTimeMillis());
-        met1(arr2);
-        met1(arr3);
-        System.arraycopy(arr2,0,arr,0,lim);
-        System.arraycopy(arr3,0,arr,lim,lim);
-        System.out.println(System.currentTimeMillis());
+        Thread thread1 = new Thread(() ->{
+            float[] arr2 = new float[lim];
+            System.arraycopy(arr,0,arr2,0, lim);
+            met1(arr2);
+            System.arraycopy(arr2,0,arr,0,lim);
+            System.out.println(System.currentTimeMillis() + " - Конец первого потока");});
+
+        Thread thread2 = new Thread(() ->{
+            float[] arr3 = new float[lim];
+            System.arraycopy(arr,lim,arr3,0, lim);
+            System.out.println(System.currentTimeMillis());
+            met1(arr3);
+            System.arraycopy(arr3,0,arr,lim,lim);
+            System.out.println(System.currentTimeMillis() + " - Конец второго потока");});
+
+        thread1.start();
+        thread2.start();
     }
 
     static void iterarr(float[] arr){
