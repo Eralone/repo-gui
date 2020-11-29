@@ -28,7 +28,7 @@ public class Main {
             System.arraycopy(arr,0,arr2,0, lim);
             met1(arr2);
             System.arraycopy(arr2,0,arr,0,lim);
-            System.out.println(System.currentTimeMillis() + " - Конец первого потока");});
+            });
 
         Thread thread2 = new Thread(() ->{
             float[] arr3 = new float[lim];
@@ -36,10 +36,18 @@ public class Main {
             System.out.println(System.currentTimeMillis());
             met1(arr3);
             System.arraycopy(arr3,0,arr,lim,lim);
-            System.out.println(System.currentTimeMillis() + " - Конец второго потока");});
+            });
 
         thread1.start();
         thread2.start();
+
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(System.currentTimeMillis() + " - Конец выполнения 2х потоков");
     }
 
     static void iterarr(float[] arr){
